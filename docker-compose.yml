@@ -1,0 +1,15 @@
+services:
+  mail-archive:
+    build: .
+    image: mail-archive-organizer
+    ports:
+      - "8000:8000"
+    environment:
+      # SQLite 文件路径（容器内），默认即为此值
+      DATABASE_PATH: /data/mail_archive.db
+    volumes:
+      - mail-archive-data:/data
+    restart: unless-stopped
+
+volumes:
+  mail-archive-data:
